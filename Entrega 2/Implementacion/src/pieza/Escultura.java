@@ -2,7 +2,7 @@ package pieza;
 
 import java.util.List;
 
-public class Escultura {
+public class Escultura extends Pieza {
 
 	private int alto;
 	private int ancho;
@@ -13,9 +13,10 @@ public class Escultura {
 	private boolean adicional;
 	
 
-	public Escultura(int alto, int ancho, int profundidad, List<String> materiales, int peso, boolean electricidad,
+
+	public Escultura(String titulo, String año, String lugarCreacion, boolean disponible, int valor, Autor autor, int alto, int ancho, int profundidad, List<String> materiales, int peso, boolean electricidad,
 			boolean adicional) {
-		super();
+		super(titulo, año, lugarCreacion, disponible, valor, autor);
 		this.alto = alto;
 		this.ancho = ancho;
 		this.profundidad = profundidad;

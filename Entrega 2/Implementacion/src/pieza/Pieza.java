@@ -1,15 +1,15 @@
 package pieza;
 
-public class Pieza {
+public abstract class Pieza {
 
-	private String titulo;
+	public String titulo;
 	private String año;
 	private String lugarCreacion;
 	private boolean disponible;
 	private int valor;
 	private Autor autor;
+	
 	public Pieza(String titulo, String año, String lugarCreacion, boolean disponible, int valor, Autor autor) {
-		super();
 		this.titulo = titulo;
 		this.año = año;
 		this.lugarCreacion = lugarCreacion;
@@ -17,6 +17,7 @@ public class Pieza {
 		this.valor = valor;
 		this.autor = autor;
 	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
