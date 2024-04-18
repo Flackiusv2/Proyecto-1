@@ -12,6 +12,7 @@ public class Impresion extends Pieza {
 	
 	public Impresion(String titulo, String año, String lugarCreacion, boolean disponible, int valor, Autor autor,
 			int tamaño, int resolucion, String tipoDePapel, String acabado) {
+		
 		super(titulo, año, lugarCreacion, disponible, valor, autor);
 		this.tamaño = tamaño;
 		this.resolucion = resolucion;

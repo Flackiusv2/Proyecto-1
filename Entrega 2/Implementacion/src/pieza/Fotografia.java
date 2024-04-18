@@ -1,18 +1,20 @@
 package pieza;
 
-public class Fotografia {
+public class Fotografia extends Pieza{
 	
 	private int alto;
 	private int ancho;
 	private String resolucion;
-	private int profundidad;
 	
-	public Fotografia(int alto, int ancho, String resolucion, int profundidad) {
-		super();
+	
+	public Fotografia(String titulo, String año, String lugarCreacion, boolean disponible, int valor, 
+			Autor autor, int alto, int ancho, String resolucion) {
+		
+		super(titulo, año, lugarCreacion, disponible, valor, autor);
 		this.alto = alto;
 		this.ancho = ancho;
 		this.resolucion = resolucion;
-		this.profundidad = profundidad;
+		
 	}
 
 	public int getAlto() {
@@ -28,11 +30,6 @@ public class Fotografia {
 
 	public String getResolucion() {
 		return resolucion;
-	}
-
-
-	public int getProfundidad() {
-		return profundidad;
 	}
 
 	
