@@ -1,15 +1,28 @@
 package usuario;
 
-import logica.Cliente;
+import java.util.HashMap;
+
+import logica.Inventario;
+import logica.Subasta;
+import pieza.Pieza;
 
 public class Administrador {
 	
 	
-	public void iniciarSubasta(String fecha) {
-		new Subasta = Subasta()
+	public Subasta iniciarSubasta(HashMap<String,Pieza> piezasSubasta) {
+		 return new Subasta(piezasSubasta);
 	}
-	public void registrarPieza()
-	public void verificarCliente(Cliente cliente)
-	public String venderPieza()
+	public void registrarPieza(Inventario rInventario, Pieza rpieza, String almacenamiento) {
+		rInventario.registrarPieza(rpieza, almacenamiento);
+			
+		
+	}
+	public void verificarCliente(Cliente cliente) {
+		
+		
+	}
+	public String confirmarVenta(Cliente vcliente) {
+		if (vcliente.login(null, null))
+	}
 
 }

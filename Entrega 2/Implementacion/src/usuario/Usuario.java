@@ -1,6 +1,6 @@
 package usuario;
 
-public class Usuario {
+public abstract class Usuario {
 
 	private String nombre;
 	private String contraseña;

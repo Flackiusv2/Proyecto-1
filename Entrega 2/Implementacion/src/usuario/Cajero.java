@@ -1,6 +1,5 @@
 package usuario;
 
-import logica.Cliente;
 import pieza.Pieza;
 
 public class Cajero {

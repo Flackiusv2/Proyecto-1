@@ -1,5 +1,7 @@
-package logica;
+package usuario;
 
 public class Cliente {
+
+	
 
 }

@@ -27,7 +27,7 @@ public abstract class Pieza {
 	public String getLugar() {
 		return lugarCreacion;
 	}
-	private boolean estaDisponible() {
+	public boolean estaDisponible() {
 		return disponible;
 	}
 	public int getValor() {
@@ -36,7 +36,7 @@ public abstract class Pieza {
 	public Autor getAutor() {
 		return autor;
 	}
-	private void bloquear() {
+	public void bloquear() {
 		 disponible = false;
 	}
 	
