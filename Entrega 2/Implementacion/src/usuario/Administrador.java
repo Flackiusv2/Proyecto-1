@@ -17,12 +17,32 @@ public class Administrador {
 			
 		
 	}
-	public void verificarCliente(Cliente cliente) {
-		
+	public boolean verificarCliente(Cliente vcliente, String contraseña) {
+		if (vcliente.login(vcliente.getNombre(), contraseña)) {
+			return true;
+		}else {
+			return false;
+		}
+			
 		
 	}
-	public String confirmarVenta(Cliente vcliente) {
-		if (vcliente.login(null, null))
+	public boolean confirmarVenta(Cliente vcliente, String contraseña, String confirmacion) {
+		if (verificarCliente(vcliente,contraseña)) {
+			if (confirmacion == "si"){
+				return true;
+			}
+		}
+		return false;
 	}
+	
+	public boolean verificarDevolucion(Cliente dcliente, String contraseña, String confirmacion) {
+		if (verificarCliente(dcliente,contraseña)) {
+			if (confirmacion == "si"){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 }
