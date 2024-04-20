@@ -1,6 +1,8 @@
 package logica;
 import java.util.HashMap;
 
+import pieza.Pieza;
+
 public class Cliente {
 	private String nombre;
 	private String telefono;
@@ -30,16 +32,41 @@ public class Cliente {
 	}
 	
 	public HashMap<String, Compra> getHistoralCompras(){
-		return this.historialCompras
+		return this.historialCompras;
 		
 	}
 
-	public void comprar(String medio, Pieza pieza) {
-		valor = pieza.getValor
-		 Compra registro = new Compra(medio, )
+	public void comprar(String medio, String titulo, HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
+		Pieza pieza = exhi.get(titulo);
+		if (pieza == null) {
+			pieza = bodega.get(titulo);
+			if (pieza == null) {
+				System.out.println("no existe la pieza");
+			}
+		}
+		
+		int valor = pieza.getValor();
+		compraController.hacerCompra(medio, valor);
 		
 	}
 		
+	public void devolucion(String titulo, boolean confirmacion, HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
+		Pieza pieza = exhi.get(titulo);
+		if (pieza == null) {
+			pieza = bodega.get(titulo);
+			if (pieza == null) {
+				System.out.println("no existe la pieza");
+			}
+		}
+		
+		if (pieza== piezasPosesion.get(titulo)){
+			piezasPosesion.remove(titulo);
+			historialCompras.remove(titulo);
+		}
+		
 	}
-
+	
+	
+	
 }
+
