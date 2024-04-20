@@ -12,5 +12,5 @@ public class SubastaController {
 	
 	//public String Ofertar(Pieza opieza, int valor) {
 		
-	}
 }
+

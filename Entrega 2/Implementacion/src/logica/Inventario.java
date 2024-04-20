@@ -10,7 +10,10 @@ public class Inventario {
 	private HashMap<String,Pieza> enBodega;
 	
 	
-	public Inventario() {}
+	public Inventario() {
+		enExhibicion = new HashMap<String,Pieza>();
+		enBodega = new HashMap<String,Pieza>();
+	}
 	
 	public HashMap<String, Pieza> getEnExhibicion() {
 		return enExhibicion;
@@ -20,6 +23,17 @@ public class Inventario {
 		return enBodega;
 	}
 	
+	public Pieza getPieza(String titulo, String almacenamiento) {
+		if (almacenamiento == "exhibicion") {
+			return enExhibicion.get(titulo);
+			
+		}else if (almacenamiento == "bodega") {
+			return enBodega.get(titulo);
+		}else {
+			return null;
+		}
+	}
+	
 	public void registrarPieza(Pieza rpieza, String almacenamiento) {
 		if (almacenamiento == "exhibicion") {
 				enExhibicion.put(rpieza.getTitulo(), rpieza);
@@ -27,12 +41,16 @@ public class Inventario {
 			enBodega.put(rpieza.getTitulo(), rpieza);	
 		}
 	}
-	public void venderPieza(Pieza vpieza, String almacenamiento) {
+	public boolean venderPieza(String titulo, String almacenamiento) {
 		if (almacenamiento == "exhibicion") {
-			enExhibicion.remove(vpieza.getTitulo());
+			enExhibicion.remove(titulo);
+			return true;
 			
+		}else if (almacenamiento == "bodega") {
+			enBodega.remove(titulo);	
+			return true;
 		}else {
-			enExhibicion.remove(vpieza.getTitulo());	
+			return false;
 		}
 	
 	}

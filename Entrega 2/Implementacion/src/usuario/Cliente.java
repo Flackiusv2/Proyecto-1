@@ -6,7 +6,8 @@ import logica.Compra;
 import logica.compraController;
 import pieza.Pieza;
 
-public class Cliente {
+public class Cliente extends Usuario{
+	
 	private String nombre;
 	private String telefono;
 	private String correo;
@@ -14,11 +15,15 @@ public class Cliente {
 	private HashMap<String, Pieza> piezasPosesion;
 	private int valorMax;
 	
-	public Cliente(String cnombre, String ctelefono, String ccorreo) {
+	public Cliente(String nombre, String contraseña, String cnombre, String ctelefono, String ccorreo) {
+		super(nombre, contraseña);
 		nombre = cnombre;
 		telefono = ctelefono;
 		correo = ccorreo;
+		historialCompras = new HashMap<String, Compra>();
+		piezasPosesion = new HashMap<String, Pieza>();
 	}
+
 	
 	public void setValorMax(int valor) {
 		this.valorMax = valor;
@@ -33,13 +38,16 @@ public class Cliente {
 	public String getCorreo() {
 		return this.correo;
 	}
-	
+	public void agregarHistorial(String titulo, Compra compra ) {
+		historialCompras.put(titulo,compra);
+		
+	}
 	public HashMap<String, Compra> getHistoralCompras(){
 		return this.historialCompras;
 		
 	}
 
-	public void comprar(String medio, String titulo, HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
+	public void comprar(String medio, String titulo, String almacenamiento, Administrador admin,HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
 		Pieza pieza = exhi.get(titulo);
 		if (pieza == null) {
 			pieza = bodega.get(titulo);
@@ -49,7 +57,8 @@ public class Cliente {
 		}
 		
 		int valor = pieza.getValor();
-		compraController.hacerCompra(medio, valor);
+		Cajero cajeroCliente = new Cajero();
+		cajeroCliente.registrarPago(medio, valor, titulo, almacenamiento, this, admin);
 		
 	}
 		
