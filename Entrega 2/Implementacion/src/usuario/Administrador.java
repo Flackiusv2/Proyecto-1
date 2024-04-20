@@ -19,7 +19,7 @@ public class Administrador {
 	}
 	public boolean verificarCliente(Cliente vcliente, String contraseña) {
 		if (vcliente.login(vcliente.getNombre(), contraseña)) {
-			vcliente.setValorMax(100000);
+			vcliente.s;
 			return true;
 		}else {
 			return false;
