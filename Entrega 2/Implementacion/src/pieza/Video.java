@@ -2,25 +2,32 @@ package pieza;
 
 public class Video extends Pieza {
 	
-	private int duracion;
-	private  int tamaño;
+	private String duracion;
+    private String tamanio;
 
-	public Video(String titulo, String año, String lugarCreacion, boolean disponible, 
-			int valor, Autor autor, int duracion, int tamaño) {
-		
-		super(titulo, año, lugarCreacion, disponible, valor, autor);
-		this.duracion = duracion;
-		this.tamaño = tamaño;
-	}
+    public Video(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada, String duracion, String tamanio) {
+        super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);
+        this.duracion = duracion;
+        this.tamanio = tamanio;
+    }
 
+    public String getDuracion() {
+        return duracion;
+    }
 
-	public int getTamaño() {
-		return tamaño;
-	}
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
 
-	public int getDuracion() {
-		return duracion;
-	}
-	
-	
+    public String getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(String tamanio) {
+        this.tamanio = tamanio;
+    }
+
+    public String getTipoPieza(){
+        return "Video";
+    }
 }

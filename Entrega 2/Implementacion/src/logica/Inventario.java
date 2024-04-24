@@ -1,60 +1,91 @@
 package logica;
 
-import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import pieza.Pieza;
 
 public class Inventario {
 	
-	private HashMap<String,Pieza> enExhibicion;
-	private HashMap<String,Pieza> enBodega;
-	
-	
-	public Inventario() {
-		enExhibicion = new HashMap<String,Pieza>();
-		enBodega = new HashMap<String,Pieza>();
-	}
-	
-	public HashMap<String, Pieza> getEnExhibicion() {
-		return enExhibicion;
-	}
+	private List<Pieza> piezasEnExhibicion;
+    private List<Pieza> piezasEnBodega;
+    private List<Pieza> piezasPasadas;
+    private List<Pieza> piezasDisponibleVenta;
 
-	public HashMap<String, Pieza> getEnBodega() {
-		return enBodega;
-	}
-	
-	public Pieza getPieza(String titulo, String almacenamiento) {
-		if (almacenamiento == "exhibicion") {
-			return enExhibicion.get(titulo);
-			
-		}else if (almacenamiento == "bodega") {
-			return enBodega.get(titulo);
-		}else {
-			return null;
-		}
-	}
-	
-	public void registrarPieza(Pieza rpieza, String almacenamiento) {
-		if (almacenamiento == "exhibicion") {
-				enExhibicion.put(rpieza.getTitulo(), rpieza);
-		}else {
-			enBodega.put(rpieza.getTitulo(), rpieza);	
-		}
-	}
-	public boolean venderPieza(String titulo, String almacenamiento) {
-		if (almacenamiento == "exhibicion") {
-			enExhibicion.remove(titulo);
-			return true;
-			
-		}else if (almacenamiento == "bodega") {
-			enBodega.remove(titulo);	
-			return true;
-		}else {
-			return false;
-		}
-	
-	}
-	
-	
-	
+    public Inventario() {
+        this.piezasEnExhibicion = new LinkedList<Pieza>( );
+        this.piezasEnBodega = new LinkedList<Pieza>( );
+        this.piezasPasadas = new LinkedList<Pieza>( );
+        this.piezasDisponibleVenta = new LinkedList<Pieza>( );
+    }
+
+    public List<Pieza> getPiezasEnExhibicion() {
+        return piezasEnExhibicion;
+    }
+
+    public List<Pieza> getPiezasEnBodega() {
+        return piezasEnBodega;
+    }
+
+    public List<Pieza> getPiezasPasadas() {
+        return piezasPasadas;
+    }
+
+    public List<Pieza> getPiezasDisponibleVenta() {
+        return piezasDisponibleVenta;
+    }
+
+    public void guardarEnBodega(Pieza pieza){
+        this.piezasEnBodega.add(pieza);
+    }
+    public void ponerEnDisponibles(Pieza pieza){
+        this.piezasDisponibleVenta.add(pieza);
+    }
+    public void pasarAPasadas(Pieza pieza){
+        this.piezasPasadas.add(pieza);
+    }
+
+    public void pasarAExhibicion(Pieza pieza){
+        this.piezasEnExhibicion.add(pieza);
+    }
+
+    public void eliminarDeBodega(Pieza pieza){
+        this.piezasEnBodega.remove(pieza);
+    }
+
+    public Pieza buscarPieza(String titulo){
+        for (Pieza pieza : piezasEnExhibicion) {
+            if(pieza.getTitulo().equals(titulo)){
+                return pieza;
+            }
+        }
+        for (Pieza pieza : piezasEnBodega) {
+            if(pieza.getTitulo().equals(titulo)){
+                return pieza;
+            }
+        }
+        for (Pieza pieza : piezasPasadas) {
+            if(pieza.getTitulo().equals(titulo)){
+                return pieza;
+            }
+        }
+        return null;
+        
+    }
+
+    public void bloquearPieza(String titulo){
+        Pieza pieza = buscarPieza(titulo);
+        if(pieza != null){
+            pieza.setBloqueada(true);
+        }
+    }
+
+    public void desbloquearPieza(String titulo){
+        Pieza pieza = buscarPieza(titulo);
+        if(pieza != null){
+            pieza.setBloqueada(false);
+        }
+    }
+
+    
 }

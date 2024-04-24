@@ -2,38 +2,34 @@ package pieza;
 
 public class Fotografia extends Pieza{
 	
-	private int alto;
-	private int ancho;
 	private String resolucion;
-	
-	
-	public Fotografia(String titulo, String año, String lugarCreacion, boolean disponible, int valor, 
-			Autor autor, int alto, int ancho, String resolucion) {
-		
-		super(titulo, año, lugarCreacion, disponible, valor, autor);
-		this.alto = alto;
-		this.ancho = ancho;
-		this.resolucion = resolucion;
-		
-	}
+    private String tamanio;
 
-	public int getAlto() {
-		return alto;
-	}
+    public Fotografia(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada, String resolucion, String tamanio) {
+        super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);
+        this.resolucion = resolucion;
+        this.tamanio = tamanio;
+    }
+
+    public String getResolucion() {
+        return resolucion;
+    }
+
+    public void setResolucion(String resolucion) {
+        this.resolucion = resolucion;
+    }
+
+    public String getTamanio() {
+        return tamanio;
+    }
+
+    public void setTamanio(String tamanio) {
+        this.tamanio = tamanio;
+    }
+
+    public String getTipoPieza(){
+        return "Fotografia";
+    }
 
 
-	public int getAncho() {
-		return ancho;
-	}
-
-	
-
-	public String getResolucion() {
-		return resolucion;
-	}
-
-	
-	
-	
-	
 }

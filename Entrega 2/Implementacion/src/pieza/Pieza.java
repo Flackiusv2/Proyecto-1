@@ -1,49 +1,92 @@
 package pieza;
 
-public abstract class Pieza {
+import java.util.LinkedList;
+import java.util.List;
 
-	public String titulo;
-	private String año;
-	private String lugarCreacion;
-	private boolean disponible;
-	private int valor;
-	private Autor autor;
+public abstract class Pieza {
 	
-	public Pieza(String titulo, String año, String lugarCreacion, boolean disponible, int valor, Autor autor) {
-		this.titulo = titulo;
-		this.año = año;
-		this.lugarCreacion = lugarCreacion;
-		this.disponible = disponible;
-		this.valor = valor;
-		this.autor = autor;
-	}
-	
-	public String getTitulo() {
-		return titulo;
-	}
-	public String getAño() {
-		return año;
-	}
-	public String getLugar() {
-		return lugarCreacion;
-	}
-	public boolean estaDisponible() {
-		return disponible;
-	}
-	public int getValor() {
-		return valor;
-	}
-	public Autor getAutor() {
-		return autor;
-	}
-	public void bloquear() {
-		 disponible = false;
-	}
-	public void desbloquear() {
-		 disponible = true;
-	}
-	
-	
-	
-	
+	private String titulo;
+    private List<Autor> autores;
+    private int año;
+    private String lugarCreacion;
+    private String fechaDevolucion;
+    private boolean disponibleVentaValorFijo;
+    private boolean bloqueada;
+    private int precioFijo;
+    public abstract String getTipoPieza();
+
+    public Pieza(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada) {
+        this.titulo = titulo;
+        this.autores = new LinkedList<Autor>( );
+        this.año = anioCreacion;
+        this.lugarCreacion = lugarCreacion;
+        this.fechaDevolucion = fechaDevolucion;
+        this.disponibleVentaValorFijo = disponibleVentaValorFijo;
+        this.bloqueada = bloqueada;
+        this.precioFijo = 0;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+    }
+
+    public int getAnioCreacion() {
+        return año;
+    }
+
+    public void setAnioCreacion(int anioCreacion) {
+        this.año = anioCreacion;
+    }
+
+    public String getLugarCreacion() {
+        return lugarCreacion;
+    }
+
+    public void setLugarCreacion(String lugarCreacion) {
+        this.lugarCreacion = lugarCreacion;
+    }
+
+    public String getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+
+    public void setFechaDevolucion(String fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
+    }
+
+    public boolean isDisponibleVentaValorFijo() {
+        return disponibleVentaValorFijo;
+    }
+
+    public void setDisponibleVentaValorFijo(boolean disponibleVentaValorFijo) {
+        this.disponibleVentaValorFijo = disponibleVentaValorFijo;
+    }
+
+    public boolean isBloqueada() {
+        return bloqueada;
+    }
+
+    public void setBloqueada(boolean bloqueada) {
+        this.bloqueada = bloqueada;
+    }
+
+    public void agregarAutor(Autor autor) {
+        autores.add(autor);
+    }
+
+    public int getPrecioFijo() {
+        return precioFijo;
+    }
 }
