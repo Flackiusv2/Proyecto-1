@@ -1,11 +1,8 @@
 package usuario;
 
-import java.util.HashMap;
 
 import logica.Compra;
 import logica.Galeria;
-import logica.Inventario;
-import logica.Subasta;
 import pieza.Pieza;
 
 public class Administrador extends Empleado {
