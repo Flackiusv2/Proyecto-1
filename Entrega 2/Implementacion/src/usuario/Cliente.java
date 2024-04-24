@@ -6,6 +6,7 @@ import logica.Compra;
 import logica.compraController;
 import pieza.Pieza;
 
+
 public class Cliente extends Usuario{
 	private String nombre;
 	private String telefono;
@@ -18,6 +19,7 @@ public class Cliente extends Usuario{
 		super(cnombre, contraseña);
 		telefono = ctelefono;
 		correo = ccorreo;
+
 	}
 	
 	public void setValorMax(int valor) {
@@ -38,6 +40,10 @@ public class Cliente extends Usuario{
 		return this.historialCompras;
 		
 	}
+
+	
+
+
 
 	public void comprar(String medio, String titulo, HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
 		Pieza pieza = exhi.get(titulo);
@@ -71,11 +77,4 @@ public class Cliente extends Usuario{
 	
 	
 	
-}
-
-
-
-	
-	
-
 }
