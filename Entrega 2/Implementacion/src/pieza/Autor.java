@@ -1,27 +1,31 @@
 package pieza;
 
-import java.util.List;
 
 public class Autor {
 	
 	private String nombre;
-	private  List<Pieza> piezas;
-	
-	public Autor(String nombre, List<Pieza> piezas) {
-		this.nombre = nombre;
-		this.piezas = piezas;
-	}
-	
-	public String getNombre(){
-		return nombre;
-	}
-	public List<Pieza> getPiezas() {
-		return piezas;
-	}
-	//implementar 
-	//public getPieza(Pieza pieza) {}
-		
-	
-	
-	
+    private boolean esAnonimo;
+
+    public Autor(String nombre, boolean esAnonimo) {
+        this.nombre = nombre;
+        this.esAnonimo = esAnonimo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean isEsAnonimo() {
+        return esAnonimo;
+    }
+
+    public void setEsAnonimo(boolean esAnonimo) {
+        this.esAnonimo = esAnonimo;
+    }
+
+    
 }

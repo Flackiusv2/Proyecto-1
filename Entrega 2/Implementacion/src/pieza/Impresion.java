@@ -10,10 +10,10 @@ public class Impresion extends Pieza {
 	
 	
 	
-	public Impresion(String titulo, String año, String lugarCreacion, boolean disponible, int valor, Autor autor,
+	public Impresion(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada,
 			int tamaño, int resolucion, String tipoDePapel, String acabado) {
 		
-		super(titulo, año, lugarCreacion, disponible, valor, autor);
+		super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);
 		this.tamaño = tamaño;
 		this.resolucion = resolucion;
 		this.tipoDePapel = tipoDePapel;
@@ -31,6 +31,9 @@ public class Impresion extends Pieza {
 	public String getAcabado() {
 		return acabado;
 	}
+	public String getTipoPieza(){
+        return "Impresion";
+    }
 	
 	
 }

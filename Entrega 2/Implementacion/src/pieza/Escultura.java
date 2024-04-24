@@ -5,63 +5,74 @@ import java.util.List;
 public class Escultura extends Pieza {
 
 	private int alto;
-	private int ancho;
-	private int profundidad;
-	private List<String> materiales;
-	private int peso;
-	private boolean electricidad;
-	private boolean adicional;
-	
+    private int ancho;
+    private int profundidad;
+    private int peso;
+    private String materialesConstruccion;
+    private boolean necesitaElectricidad;
+
+    public Escultura(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada, int alto, int ancho, int profundidad, int peso, String materialesConstruccion, boolean necesitaElectricidad) {
+        super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);
+        this.alto = alto;
+        this.ancho = ancho;
+        this.profundidad = profundidad;
+        this.peso = peso;
+        this.materialesConstruccion = materialesConstruccion;
+        this.necesitaElectricidad = necesitaElectricidad;
+    }
+
+    public int getAlto() {
+        return alto;
+    }
+
+    public void setAlto(int alto) {
+        this.alto = alto;
+    }
+
+    public int getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
+    }
+
+    public int getProfundidad() {
+        return profundidad;
+    }
+
+    public void setProfundidad(int profundidad) {
+        this.profundidad = profundidad;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public String getMaterialesConstruccion() {
+        return materialesConstruccion;
+    }
+
+    public void setMaterialesConstruccion(String materialesConstruccion) {
+        this.materialesConstruccion = materialesConstruccion;
+    }
+
+    public boolean isNecesitaElectricidad() {
+        return necesitaElectricidad;
+    }
+
+    public void setNecesitaElectricidad(boolean necesitaElectricidad) {
+        this.necesitaElectricidad = necesitaElectricidad;
+    }
 
 
-	public Escultura(String titulo, String año, String lugarCreacion, boolean disponible, int valor, Autor autor, int alto, int ancho, int profundidad, List<String> materiales, int peso, boolean electricidad,
-			boolean adicional) {
-		super(titulo, año, lugarCreacion, disponible, valor, autor);
-		this.alto = alto;
-		this.ancho = ancho;
-		this.profundidad = profundidad;
-		this.materiales = materiales;
-		this.peso = peso;
-		this.electricidad = electricidad;
-		this.adicional = adicional;
-	}
+    public String getTipoPieza() {
+        return "Escultura";
+    }
 
-
-	public int getAlto() {
-		return alto;
-	}
-
-
-	public int getAncho() {
-		return ancho;
-	}
-
-
-	public int getProfundidad() {
-		return profundidad;
-	}
-
-
-
-	public List<String> getMateriales() {
-		return materiales;
-	}
-
-	public int getPeso() {
-		return peso;
-	}
-
-
-	public boolean necesitaElectricidad() {
-		return electricidad;
-	}
-
-	public boolean necesitaAdicional() {
-		return adicional;
-	}
-
-
-
-	
-	
 }
+
