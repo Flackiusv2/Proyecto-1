@@ -6,8 +6,13 @@ import logica.Compra;
 import logica.compraController;
 import pieza.Pieza;
 
+<<<<<<< HEAD
 
 public class Cliente extends Usuario{
+=======
+public class Cliente extends Usuario{
+	
+>>>>>>> branch 'main' of https://github.com/Flackiusv2/Proyecto-1.git
 	private String nombre;
 	private String telefono;
 	private String correo;
@@ -15,12 +20,24 @@ public class Cliente extends Usuario{
 	private HashMap<String, Pieza> piezasPosesion;
 	private int valorMax;
 	
+<<<<<<< HEAD
 	public Cliente(String cnombre, String contraseña, String ctelefono, String ccorreo) {
 		super(cnombre, contraseña);
+=======
+	public Cliente(String nombre, String contraseña, String cnombre, String ctelefono, String ccorreo) {
+		super(nombre, contraseña);
+		nombre = cnombre;
+>>>>>>> branch 'main' of https://github.com/Flackiusv2/Proyecto-1.git
 		telefono = ctelefono;
 		correo = ccorreo;
+<<<<<<< HEAD
 
+=======
+		historialCompras = new HashMap<String, Compra>();
+		piezasPosesion = new HashMap<String, Pieza>();
+>>>>>>> branch 'main' of https://github.com/Flackiusv2/Proyecto-1.git
 	}
+
 	
 	public void setValorMax(int valor) {
 		this.valorMax = valor;
@@ -35,17 +52,24 @@ public class Cliente extends Usuario{
 	public String getCorreo() {
 		return this.correo;
 	}
-	
+	public void agregarHistorial(String titulo, Compra compra ) {
+		historialCompras.put(titulo,compra);
+		
+	}
 	public HashMap<String, Compra> getHistoralCompras(){
 		return this.historialCompras;
 		
 	}
 
+<<<<<<< HEAD
 	
 
 
 
 	public void comprar(String medio, String titulo, HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
+=======
+	public void comprar(String medio, String titulo, String almacenamiento, Administrador admin,HashMap<String, Pieza>exhi, HashMap<String, Pieza>bodega) {
+>>>>>>> branch 'main' of https://github.com/Flackiusv2/Proyecto-1.git
 		Pieza pieza = exhi.get(titulo);
 		if (pieza == null) {
 			pieza = bodega.get(titulo);
@@ -55,7 +79,8 @@ public class Cliente extends Usuario{
 		}
 		
 		int valor = pieza.getValor();
-		compraController.hacerCompra(medio, valor);
+		Cajero cajeroCliente = new Cajero();
+		cajeroCliente.registrarPago(medio, valor, titulo, almacenamiento, this, admin);
 		
 	}
 		

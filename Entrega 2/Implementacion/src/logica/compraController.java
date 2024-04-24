@@ -4,9 +4,9 @@ public class compraController {
 
 	public compraController() {}
 	
-	public void hacerCompra(String medioDePago, int valorPagado) {
+	public Compra hacerCompra(String medioDePago, int valorPagado) {
 		
-		Compra registro = new Compra( medioDePago,valorPagado);
+		return new Compra( medioDePago,valorPagado);
 	}
 	
 	

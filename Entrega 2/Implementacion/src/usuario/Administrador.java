@@ -8,41 +8,46 @@ import pieza.Pieza;
 
 public class Administrador {
 	
+	private Inventario Ainventario;
+	
+	public Administrador(Inventario inventario) {
+		super();
+		this.Ainventario = inventario;
+	}
+	
+	
+	public void verificarCliente(Cliente cliente) {
+		cliente.setValorMax(100000);
+	}
 	
 	public Subasta iniciarSubasta(HashMap<String,Pieza> piezasSubasta) {
 		 return new Subasta(piezasSubasta);
 	}
-	public void registrarPieza(Inventario rInventario, Pieza rpieza, String almacenamiento) {
-		rInventario.registrarPieza(rpieza, almacenamiento);
+	public void registrarPieza(Pieza rpieza, String almacenamiento) {
+		Ainventario.registrarPieza(rpieza, almacenamiento);
 			
 		
-	}
-	public boolean verificarCliente(Cliente vcliente, String contraseña) {
-		if (vcliente.login(vcliente.getNombre(), contraseña)) {
-			vcliente.s;
+	}	
+	
+	public boolean confirmarVenta(String titulo, String almacenamiento) {
+		Pieza pieza = Ainventario.getPieza(titulo, almacenamiento);
+		pieza.bloquear();
+		boolean confirmacion = Ainventario.venderPieza(titulo, almacenamiento);
+		if (confirmacion){
 			return true;
+		}else {
+			pieza.desbloquear();
+			return false;
+		}
+		
+	}
+
+	public boolean verificarDevolucion(Cliente dcliente,  String confirmacion) {
+		if (confirmacion == "si"){
+				return true;
 		}else {
 			return false;
 		}
-			
-		
-	}
-	public boolean confirmarVenta(Cliente vcliente, String contraseña, String confirmacion) {
-		if (verificarCliente(vcliente,contraseña)) {
-			if (confirmacion == "si"){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean verificarDevolucion(Cliente dcliente, String contraseña, String confirmacion) {
-		if (verificarCliente(dcliente,contraseña)) {
-			if (confirmacion == "si"){
-				return true;
-			}
-		}
-		return false;
 	}
 	
 

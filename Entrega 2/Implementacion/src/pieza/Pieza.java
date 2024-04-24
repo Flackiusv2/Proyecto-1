@@ -39,6 +39,9 @@ public abstract class Pieza {
 	public void bloquear() {
 		 disponible = false;
 	}
+	public void desbloquear() {
+		 disponible = true;
+	}
 	
 	
 	
