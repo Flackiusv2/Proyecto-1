@@ -6,8 +6,7 @@ import logica.Galeria;
 import logica.Compra;
 import logica.Oferta;
 import logica.Subasta;
-
-
+import persistencia.PersistenciaGaleria;
 import pieza.Autor;
 import pieza.Escultura;
 import pieza.Fotografia;
@@ -356,7 +355,58 @@ public class consolaUsuario {
         System.out.println(respuesta);
     }
 
+    public static void menuCajero() {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        setUp();
+        do {
+            System.out.println("\n--- Menú Cajero ---");
+            System.out.println("1. Registrar pago");
+            System.out.println("2. Entregar pieza");
+            System.out.println("0. Volver al Menú Principal");
+            System.out.print("Seleccione una acción: ");
+            opcion = scanner.nextInt();
 
+            switch (opcion) {
+                case 1:
+                    registrarPago();
+                    break;
+                case 2:
+                    entregarPieza();
+                    break;
+                case 0:
+                    System.out.println("Volviendo al Menú Principal...");
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+        } while (opcion != 0);
+
+        scanner.close();
+    }
+    private static void registrarPago() {
+        
+        System.out.println("El estado de registro del pago de la compra con id 311589 por el comprador con el id 547293 es: ");
+        System.out.println(cajero.registrarPago(compra1, foto1,"547293"));
+    }
+
+    private static void entregarPieza() {
+        
+        String id=cajero.entregarPieza(foto2, "547293");
+        System.out.println("La pieza con título "+ foto2.getTitulo()+ " fue entregada al comprador con id 547293");
+        System.out.println("Ahora las piezas del comprador son: ");
+        for (Pieza pieza :galeriaConsola.getControladorUsuarios().obtenerPropietario(id).getMisPiezasActuales() ) {
+            System.out.println(pieza.getTitulo());
+            
+        }
+    }
+    
+    
+    public static void salvar() {
+        setUp();
+        PersistenciaGaleria.salvarGaleria(galeriaConsola);
+    }
     
     
 
