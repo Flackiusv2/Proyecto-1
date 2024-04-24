@@ -1,6 +1,7 @@
 package logica;
 
-import java.util.HashMap;
+
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,7 +38,10 @@ public class Subasta {
     public Pieza getPieza() {
         return pieza;
     }
-
+    
+    public int getValorMinimo() {
+    	return valorMinimo;
+    }
     public void agregarOferta(Oferta oferta) {
         ofertas.add(oferta);
     }
