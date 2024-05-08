@@ -9,13 +9,12 @@ import pieza.Pieza;
 public class Comprador extends Cliente {
     private int limiteCompras;
     private List<Compra> misCompras;
-    private List<Pieza> piezasDisponibles;
     
 
-    public Comprador(String login, String password, String nombre, String telefono, int limiteCompras, List<Pieza> piezasDisponibles,String id){
+    public Comprador(String login, String password, String nombre, String telefono, int limiteCompras, String id){
         super(login, password, nombre, telefono, id);
         this.limiteCompras = limiteCompras;
-        this.piezasDisponibles=piezasDisponibles;
+        
         misCompras = new LinkedList<Compra>( );
     }
     public int getLimiteCompras() {
@@ -27,9 +26,7 @@ public class Comprador extends Cliente {
     public List<Compra> getmisCompras() {
         return misCompras;
     }
-    public List<Pieza> getpiezasDisponibles() {
-        return piezasDisponibles;
-    }
+   
 
     public void agregarCompra(Compra compra) {
          misCompras.add(compra);

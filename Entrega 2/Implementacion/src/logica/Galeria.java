@@ -1,11 +1,19 @@
 package logica;
 
+import java.io.File;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import pieza.Pieza;
 import usuario.Administrador;
+import usuario.Cliente;
+import usuario.Comprador;
 import usuario.ControladorUsuarios;
+import usuario.Propietario;
+import usuario.Empleado;
 
 public class Galeria {
     private Inventario inventario;
@@ -13,7 +21,7 @@ public class Galeria {
     private Administrador administradorGaleria;
     private Map<String, Subasta> subastas;
     private Map<String, Compra> compras;
-
+    
     public Galeria(Inventario inventario, ControladorUsuarios controladorUsuarios) {
         this.inventario = inventario;
         this.controladorUsuarios = controladorUsuarios;
@@ -71,6 +79,40 @@ public class Galeria {
     public Subasta encontrarSubasta(String id) {
         return subastas.get(id);
 
+    }
+    
+    
+    public void guardarEstado( File archivo ) throws IOException
+    {
+        PrintWriter writer = new PrintWriter( archivo );
+        
+        Map<String, String> userPasswordMap = controladorUsuarios.getBaseDeDatos();
+        
+        for (Pieza pz : inventario.getPiezasDisponibleVenta()) {
+        	writer.println( pz.getTitulo() + ":" + pz.getPrecioFijo());
+        	
+        }
+        
+        
+        for( Cliente cli : controladorUsuarios.getMapaCompradores().values( ) )
+        {
+            writer.println( cli.getNombre() + cli.getId());
+        }
+        
+        // Guardar la información de los empleados
+        for( Empleado emp : controladorUsuarios.getMapaEmpleados().values( ) )
+        {
+            writer.println( "empleado:" + emp.getId( ) + ":" + emp.getRol( ) );
+        }
+        
+        
+     // Guardar la información de la base de datos de login
+        for( Map.Entry<String, String> entry : userPasswordMap.entrySet() )
+        {
+            writer.println( entry.getKey()  + ":" +  entry.getValue()); 
+        }
+
+        writer.close( );
     }
 
 

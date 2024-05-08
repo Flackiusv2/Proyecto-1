@@ -6,7 +6,7 @@ public class Pintura extends Pieza {
     private int ancho;
     private String tecnica;
 
-    public Pintura(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada, int alto, int ancho, String tecnica) {
+    public Pintura(String titulo, String anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada, int alto, int ancho, String tecnica) {
         super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);
         this.alto = alto;
         this.ancho = ancho;

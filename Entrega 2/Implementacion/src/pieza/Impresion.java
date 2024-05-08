@@ -10,7 +10,7 @@ public class Impresion extends Pieza {
 	
 	
 	
-	public Impresion(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada,
+	public Impresion(String titulo, String anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada,
 			int tamaño, int resolucion, String tipoDePapel, String acabado) {
 		
 		super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);

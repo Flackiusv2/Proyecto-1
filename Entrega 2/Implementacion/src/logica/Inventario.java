@@ -1,6 +1,6 @@
 package logica;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import pieza.Pieza;
@@ -13,10 +13,10 @@ public class Inventario {
     private List<Pieza> piezasDisponibleVenta;
 
     public Inventario() {
-        this.piezasEnExhibicion = new LinkedList<Pieza>( );
-        this.piezasEnBodega = new LinkedList<Pieza>( );
-        this.piezasPasadas = new LinkedList<Pieza>( );
-        this.piezasDisponibleVenta = new LinkedList<Pieza>( );
+        this.piezasEnExhibicion = new ArrayList<Pieza>( );
+        this.piezasEnBodega = new ArrayList<Pieza>( );
+        this.piezasPasadas = new ArrayList<Pieza>( );
+        this.piezasDisponibleVenta = new ArrayList<Pieza>( );
     }
 
     public List<Pieza> getPiezasEnExhibicion() {

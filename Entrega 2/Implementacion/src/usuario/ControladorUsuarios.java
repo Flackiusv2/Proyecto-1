@@ -1,6 +1,7 @@
 package usuario;
 
 import java.util.Map;
+import java.util.Random;
 
 import logica.Galeria;
 
@@ -11,6 +12,7 @@ public class ControladorUsuarios {
     private  Map<String, Empleado> mapaEmpleados;
     private  Map<String, Comprador> mapaCompradores ;
     private  Map<String, Propietario> mapaPropietarios;
+    private Map<String, String> baseDeDatos;
     private Galeria galeria;
     
     public ControladorUsuarios(){
@@ -18,6 +20,7 @@ public class ControladorUsuarios {
         mapaEmpleados = new HashMap<String, Empleado>();
         mapaCompradores = new HashMap<String, Comprador>();
         mapaPropietarios = new HashMap<String, Propietario>();
+        baseDeDatos = new HashMap<String, String>();
     }
 
     public void setGaleria(Galeria galeria){
@@ -43,10 +46,18 @@ public class ControladorUsuarios {
         mapaEmpleados.put(Nuevoid, administrador);
         return administrador;
     }
+    
+    public void agregarUsuario(String nombre, String password) {
+    	baseDeDatos.put(nombre, password);
+    }
+    
+    public Map<String, String> getBaseDeDatos() {
+    	return baseDeDatos;
+    }
 
     public Comprador crearComprador(String login, String password, String nombre, String telefono, int limiteCompras){
         String Nuevoid = Usuario.obtenerNuevoID();
-        Comprador comprador = new Comprador(login, password, nombre, telefono, limiteCompras, this.galeria.getInventario().getPiezasDisponibleVenta(), Nuevoid);
+        Comprador comprador = new Comprador(login, password, nombre, telefono, limiteCompras, Nuevoid);
         mapaCompradores.put(Nuevoid, comprador);
         return comprador;
     }
@@ -107,6 +118,6 @@ public class ControladorUsuarios {
     public void setMapaPropietarios(Map<String, Propietario> mapaPropietarios){
         this.mapaPropietarios = mapaPropietarios;
     }
-
+    
 
 }

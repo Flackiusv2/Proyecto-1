@@ -1,12 +1,12 @@
 package consola;
 import java.util.List;
+
 import java.util.Scanner;
 
 import logica.Galeria;
 import logica.Compra;
 import logica.Oferta;
 import logica.Subasta;
-import persistencia.PersistenciaGaleria;
 import pieza.Autor;
 import pieza.Escultura;
 import pieza.Fotografia;
@@ -20,21 +20,21 @@ import usuario.Comprador;
 import usuario.Operador;
 import usuario.Propietario;
 import logica.Inventario;
-import logica.Galeria;
+
 
 public class consolaUsuario {
 
 	public static Autor autor1= new Autor("dabibo", false);
-    public static Pintura pinturaAgregar=new Pintura("mariachis", 1996, "Francia","25-20-2018", true, false, 60, 80, "Oleo");
-    public static Pintura pintura1=new Pintura("koliflor", 1964, "Italia","05-12-2016", true, true, 70, 40, "Oleo");
-    public static Video video1= new Video("muajau", 1999, "Korea","20-03-2024", true, false, "45", "360");
-    public static Fotografia foto1= new Fotografia("el canil", 2003, "Colombia","28-11-2014", true, false, "12", "400");
-    public static Fotografia foto2= new Fotografia("juriol", 2009, "Mexico","14-05-2015", false, false, "30", "190");
+    public static Pintura pinturaAgregar=new Pintura("mariachis", "1996", "Francia","25-20-2018", true, false, 60, 80, "Oleo");
+    public static Pintura pintura1=new Pintura("koliflor", "1964", "Italia","05-12-2016", true, true, 70, 40, "Oleo");
+    public static Video video1= new Video("muajau", "1999", "Korea","20-03-2024", true, false, "45", "360");
+    public static Fotografia foto1= new Fotografia("el canil", "2003", "Colombia","28-11-2014", true, false, "12", "400");
+    public static Fotografia foto2= new Fotografia("juriol", "2009", "Mexico","14-05-2015", false, false, "30", "190");
     public static Inventario inventario1= new Inventario();
     public static ControladorUsuarios controlador= new ControladorUsuarios();
     public static Galeria galeriaConsola = new Galeria(inventario1,controlador);
     
-    public static Comprador comprador= new Comprador("amir", "12345", "amir","5975484526", 1000000,galeriaConsola.getInventario().getPiezasDisponibleVenta(), "547293");
+    public static Comprador comprador= new Comprador("amir", "12345", "amir","5975484526", 1000000, "547293");
     public static Propietario propietario= new Propietario("guikol", "15326", "guicol", "1589863153","153628");
     public static Administrador admin= new Administrador("fabian", "5896714", "Admin",galeriaConsola, "758964");
     public static Cajero cajero= new  Cajero("ozuna", "548963", "Cajero",galeriaConsola, "996354");
@@ -95,6 +95,7 @@ public class consolaUsuario {
                     break;
                 case 3:
                     System.out.println("Saliendo...");
+                 
                     break;
                 default:
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
@@ -263,7 +264,9 @@ public class consolaUsuario {
                 case 2:
                     verMisPiezasActuales();
                     break;
-                // Agrega aquí la lógica para las opciones restantes del menú del propietario
+                case 3:
+                	System.out.println("Saliendo...");
+                	break;
                 default:
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                     break;
@@ -403,10 +406,7 @@ public class consolaUsuario {
     }
     
     
-    public static void salvar() {
-        setUp();
-        PersistenciaGaleria.salvarGaleria(galeriaConsola);
-    }
+   
     
     
 

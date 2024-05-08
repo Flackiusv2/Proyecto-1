@@ -7,7 +7,7 @@ public abstract class Pieza {
 	
 	private String titulo;
     private List<Autor> autores;
-    private int año;
+    private String año;
     private String lugarCreacion;
     private String fechaDevolucion;
     private boolean disponibleVentaValorFijo;
@@ -15,7 +15,7 @@ public abstract class Pieza {
     private int precioFijo;
     public abstract String getTipoPieza();
 
-    public Pieza(String titulo, int anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada) {
+    public Pieza(String titulo, String anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada) {
         this.titulo = titulo;
         this.autores = new LinkedList<Autor>( );
         this.año = anioCreacion;
@@ -42,11 +42,11 @@ public abstract class Pieza {
         this.autores = autores;
     }
 
-    public int getAnioCreacion() {
+    public String getAnioCreacion() {
         return año;
     }
 
-    public void setAnioCreacion(int anioCreacion) {
+    public void setAnioCreacion(String anioCreacion) {
         this.año = anioCreacion;
     }
 
