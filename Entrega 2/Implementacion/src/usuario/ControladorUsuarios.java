@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class ControladorUsuarios {
     
     private  Map<String, Empleado> mapaEmpleados;
+    private  Map<String, Empleado> mapaEmpleadosByName;
     private  Map<String, Comprador> mapaCompradores ;
     private  Map<String, Propietario> mapaPropietarios;
     private Map<String, String> baseDeDatos;
@@ -21,6 +22,15 @@ public class ControladorUsuarios {
         mapaCompradores = new HashMap<String, Comprador>();
         mapaPropietarios = new HashMap<String, Propietario>();
         baseDeDatos = new HashMap<String, String>();
+        mapaEmpleadosByName = new HashMap<String, Empleado>();
+    }
+    
+    public void agregarEmpleadoByName(String nombre, Empleado empleado) {
+    	mapaEmpleadosByName.put(nombre, empleado);
+    }
+    
+    public Empleado getEmpleadoByName(String nombre) {
+    	return mapaEmpleadosByName.get(nombre);
     }
 
     public void setGaleria(Galeria galeria){
@@ -70,7 +80,7 @@ public class ControladorUsuarios {
     }
     
 
-    public Empleado obtenerEmpleado(String id){
+    public Empleado obtenerEmpleadoById(String id){
         return mapaEmpleados.get(id);
     }
 
@@ -84,15 +94,15 @@ public class ControladorUsuarios {
 
     public void agregarComprador (Comprador comprador){
 
-        mapaCompradores.put(comprador.getId(), comprador);
+        mapaCompradores.put(comprador.getLogin(), comprador);
     }
     public void agregarPropietario (Propietario propietario){
 
-        mapaPropietarios.put(propietario.getId(), propietario);
+        mapaPropietarios.put(propietario.getLogin(), propietario);
     }
     public void agregarEmpleado (Empleado empleado){
 
-        mapaEmpleados.put(empleado.getId(), empleado);
+        mapaEmpleados.put(empleado.getLogin(), empleado);
     }
 
     public Map<String, Empleado> getMapaEmpleados(){

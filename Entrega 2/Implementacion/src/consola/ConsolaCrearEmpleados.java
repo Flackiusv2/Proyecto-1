@@ -41,6 +41,7 @@ public class ConsolaCrearEmpleados extends ConsolaBasica {
 				Administrador nuevoCajero = new Administrador(nombre, password, "Cajero", laGaleria,  id );
                 
 				laGaleria.getControladorUsuarios().agregarEmpleado(nuevoCajero);
+				laGaleria.getControladorUsuarios().agregarEmpleadoByName(nombre, nuevoCajero);
 				laGaleria.getControladorUsuarios().agregarUsuario(nombre, password);
             }
             
@@ -52,6 +53,7 @@ public class ConsolaCrearEmpleados extends ConsolaBasica {
 				Administrador nuevoOperador = new Administrador(nombre, password, "Operador", laGaleria,  id );
                 
 				laGaleria.getControladorUsuarios().agregarEmpleado(nuevoOperador);
+				laGaleria.getControladorUsuarios().agregarEmpleadoByName(nombre, nuevoOperador);
 				laGaleria.getControladorUsuarios().agregarUsuario(nombre, password);
             }
             else if( opcionSeleccionada == 4 )

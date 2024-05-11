@@ -3,15 +3,15 @@ package pieza;
 public class Impresion extends Pieza {
 	
 	
-	private int tamaño;
-	private int resolucion;
+	private String tamaño;
+	private String resolucion;
 	private String tipoDePapel;
 	private String acabado;
 	
 	
 	
 	public Impresion(String titulo, String anioCreacion, String lugarCreacion, String fechaDevolucion, boolean disponibleVentaValorFijo, boolean bloqueada,
-			int tamaño, int resolucion, String tipoDePapel, String acabado) {
+			String tamaño, String resolucion, String tipoDePapel, String acabado) {
 		
 		super(titulo, anioCreacion, lugarCreacion, fechaDevolucion, disponibleVentaValorFijo, bloqueada);
 		this.tamaño = tamaño;
@@ -19,10 +19,10 @@ public class Impresion extends Pieza {
 		this.tipoDePapel = tipoDePapel;
 		this.acabado = acabado;
 	}
-	public int getTamaño() {
+	public String getTamaño() {
 		return tamaño;
 	}
-	public int getResolucion() {
+	public String getResolucion() {
 		return resolucion;
 	}
 	public String getTipoDePapel() {

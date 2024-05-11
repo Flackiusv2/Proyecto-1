@@ -1,5 +1,6 @@
 package usuario;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import logica.Compra;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Comprador extends Cliente {
         super(login, password, nombre, telefono, id);
         this.limiteCompras = limiteCompras;
         
-        misCompras = new LinkedList<Compra>( );
+        misCompras = new ArrayList<Compra>( );
     }
     public int getLimiteCompras() {
         return limiteCompras;

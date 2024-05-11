@@ -1,6 +1,7 @@
 package consola;
 
 import logica.Inventario;
+import pieza.Autor;
 import pieza.Escultura;
 import pieza.Fotografia;
 import pieza.Impresion;
@@ -10,7 +11,7 @@ import pieza.Video;
 public class ConsolaCrearInventario extends ConsolaBasica{
 	
 	
-	private final String[] opcionesCrearInventario = new String[]{ "Crear pieza" , "Cargar inventario(Primero cree piezas)", "Regresar sin crear una galeria" };
+	private final String[] opcionesCrearInventario = new String[]{ "Crear pieza como artista" , "Cargar inventario(Primero cree piezas)", "Regresar sin crear una galeria" };
 	
 	private final String[] opcionesCrearPieza = new String[]{ "Crear escultura", "Crear Fotografia", "Crear Impresion", "Crear Pintura", "Crear Video" };
 	
@@ -55,14 +56,21 @@ public class ConsolaCrearInventario extends ConsolaBasica{
 	
 	private void agregarPiezaInventario() {
 		
-		String titulo = pedirCadenaAlUsuario( "Ingrese el titulo de la pieza: " );
-		String anio = pedirCadenaAlUsuario( "Ingrese el año de creacion de la pieza: " );
-		String lugar = pedirCadenaAlUsuario( "Ingrese el lugar donde se creo: " );
-		String fecha = pedirCadenaAlUsuario( "Ingrese la fecha de  devolucion " );
+		String nombreArtista = "Anonimo";
+		
+		String titulo = pedirCadenaAlUsuario( "Ingrese el titulo de la pieza" );
+		boolean anonimo = pedirConfirmacionAlUsuario("El autor de la pieza es anonimo?");
+		if (!anonimo) {
+			nombreArtista = pedirCadenaAlUsuario( "Ingrese el nombre del artista creador de la pieza" );
+			
+		}
+		String anio = pedirCadenaAlUsuario( "Ingrese el año de creacion de la pieza" );
+		String lugar = pedirCadenaAlUsuario( "Ingrese el lugar donde se creo" );
+		String fecha = pedirCadenaAlUsuario( "Ingrese la fecha de  devolucion" );
 		boolean disponibleVentaValorFijo = true;
 		boolean bloqueada = false;
 		
-		
+		Autor nuevoAutor = new Autor(nombreArtista, anonimo);
 		
 		int opcionSeleccionada = mostrarMenu("Menu de creacion de piezas", opcionesCrearPieza);
 		
@@ -77,7 +85,8 @@ public class ConsolaCrearInventario extends ConsolaBasica{
 			
 	        Escultura nuevaEscultura = new Escultura(titulo,anio,lugar,fecha, disponibleVentaValorFijo, bloqueada,
 	        		alto,ancho,profundidad,peso,material,electricidad);
-			
+	        
+			nuevaEscultura.setAutor(nuevoAutor);
 	        boolean exhibicion = pedirConfirmacionAlUsuario("La pieza estara en exhibicion?");
 	        if (exhibicion) {
 	        	nuevoInventario.pasarAExhibicion(nuevaEscultura);
@@ -93,6 +102,8 @@ public class ConsolaCrearInventario extends ConsolaBasica{
         	
 	        Fotografia nuevaFoto = new Fotografia(titulo,anio,lugar,fecha, disponibleVentaValorFijo, bloqueada,
 	        		resolucion, tamaño);
+	        
+	        nuevaFoto.setAutor(nuevoAutor);
 	        boolean exhibicion = pedirConfirmacionAlUsuario("La pieza estara en exhibicion?");
 	        if (exhibicion) {
 	        	nuevoInventario.pasarAExhibicion(nuevaFoto);
@@ -103,13 +114,15 @@ public class ConsolaCrearInventario extends ConsolaBasica{
         }
         else if  ( opcionSeleccionada == 3 ) {
         	
-        	int resolucion = pedirEnteroAlUsuario( "Ingrese la resolucion de la impresion" );
-	        int tamaño = pedirEnteroAlUsuario( "Ingrese el tamaño de la impresion" );
+        	String resolucion = pedirCadenaAlUsuario( "Ingrese la resolucion de la impresion" );
+	        String tamaño = pedirCadenaAlUsuario( "Ingrese el tamaño de la impresion" );
 	        String tipoDePapel = pedirCadenaAlUsuario( "Ingrese el tipo de papel" );
 	        String acabado = pedirCadenaAlUsuario( "Ingrese el acabado" );
 	        
 	        Impresion nuevaImpresion = new Impresion(titulo,anio,lugar,fecha, disponibleVentaValorFijo, bloqueada,
 	        		resolucion,tamaño,tipoDePapel,acabado);
+	        
+	        nuevaImpresion.setAutor(nuevoAutor);
 	        boolean exhibicion = pedirConfirmacionAlUsuario("La pieza estara en exhibicion?");
 	        if (exhibicion) {
 	        	nuevoInventario.pasarAExhibicion(nuevaImpresion);
@@ -126,6 +139,8 @@ public class ConsolaCrearInventario extends ConsolaBasica{
 			
 			Pintura nuevaPintura = new Pintura(titulo,anio,lugar,fecha, disponibleVentaValorFijo, bloqueada,
 					ancho,alto,tecnica);
+			
+			nuevaPintura.setAutor(nuevoAutor);
 			boolean exhibicion = pedirConfirmacionAlUsuario("La pieza estara en exhibicion?");
 	        if (exhibicion) {
 	        	nuevoInventario.pasarAExhibicion(nuevaPintura);
@@ -141,6 +156,8 @@ public class ConsolaCrearInventario extends ConsolaBasica{
 	        
 	        Video nuevoVideo = new Video(titulo,anio,lugar,fecha, disponibleVentaValorFijo, bloqueada,
 	        		duracion, tamaño);
+	        
+	        nuevoVideo.setAutor(nuevoAutor);
 	        boolean exhibicion = pedirConfirmacionAlUsuario("La pieza estara en exhibicion?");
 	        if (exhibicion) {
 	        	nuevoInventario.pasarAExhibicion(nuevoVideo);

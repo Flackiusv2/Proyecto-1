@@ -6,7 +6,7 @@ import usuario.Propietario;
 
 public class ConsolaCrearClientes extends ConsolaBasica {
 	
-	private final String[] opcionesCrearCliente = new String[]{ "Nueva comprador", "Nuevo vendedor","Guardar usuarios", "Regresar sin guardar" };
+	private final String[] opcionesCrearCliente = new String[]{ "Nuevo comprador", "Nuevo propietario","Guardar usuarios", "Regresar sin guardar" };
 	
 	private ControladorUsuarios control = new ControladorUsuarios();
 	
@@ -31,8 +31,17 @@ public class ConsolaCrearClientes extends ConsolaBasica {
         		String id  = obtenerNuevoID();
         		
         		Comprador nuevoComprador =  new Comprador(nombre,password,nickname,telefono,limite,id);
-        		control.agregarComprador(nuevoComprador);
-        		control.agregarUsuario(nombre, password);
+        		
+        		if( control.obtenerPropietario(id) == null) {
+        			Propietario nuevoPropietario =  new Propietario(nombre,password,nickname,telefono,id);
+        			control.agregarPropietario(nuevoPropietario);
+        			control.agregarComprador(nuevoComprador);
+            		control.agregarUsuario(nombre, password);
+        		}else {
+        			control.agregarComprador(nuevoComprador);
+            		control.agregarUsuario(nombre, password);
+        		}
+        		
             }
             else if  ( opcionSeleccionada == 2 ) {
             	String nombre = pedirCadenaAlUsuario( "Ingrese su nombre de usuario" );

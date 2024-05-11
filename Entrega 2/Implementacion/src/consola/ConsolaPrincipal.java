@@ -1,9 +1,10 @@
 package consola;
 
 import java.io.File;
-
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import logica.Galeria;
+
 
 
 
@@ -11,7 +12,7 @@ import logica.Galeria;
 public class ConsolaPrincipal extends ConsolaBasica{
 
 	
-	private final String[] opcionesMenuPrincipal = new String[]{ "Usar galeria actual", "Crear nueva galeria", "Crear empleados de la galeria", "Cargar galeria de un archivo", "Guardar galeria a un archivo", "Salir" };
+	private final String[] opcionesMenuPrincipal = new String[]{ "Entrar a la galeria actual", "Crear nueva galeria", "Crear empleados de la galeria", "Cargar galeria de un archivo", "Guardar galeria a un archivo", "Salir" };
 
 
 	protected Galeria laGaleria;
@@ -20,8 +21,16 @@ public class ConsolaPrincipal extends ConsolaBasica{
     {
         int opcionSeleccionada = mostrarMenu( "Menú principal", opcionesMenuPrincipal );
         if( opcionSeleccionada == 1 )
-        {
-            usarGaleria( );
+        {	
+        	
+        	if ( laGaleria == null){
+        		System.out.println( "No hay en este momento una galeria que pueda usarse" );
+        	}
+        	else if (laGaleria.getControladorUsuarios().getMapaEmpleados().size() == 0) {
+            		System.out.println("No puede haber una galeria sin empleados!");
+        	}else {
+        		usarGaleria( );
+        	}
         }
         else if( opcionSeleccionada == 2 )
         {
@@ -32,7 +41,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         {	
         	boolean galeriaCheck = true;
             if (laGaleria == null) {
-            	System.out.println("No se pueden crear empleados sin galeria");
+            	System.out.println("No se pueden crear empleados sin una galeria");
             	galeriaCheck = false;
             }
             if (galeriaCheck) {
@@ -42,7 +51,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
         }
         else if( opcionSeleccionada == 4 )
         {
-            guardarGaleria();
+            cargarGaleria();
         }
         else if( opcionSeleccionada == 5 )
         {
@@ -71,11 +80,53 @@ public class ConsolaPrincipal extends ConsolaBasica{
 	
 	
 	
+	
+	private void cargarGaleria( )
+    {
+        String nombreArchivo = pedirCadenaAlUsuario( "Indique el archivo con la información de la gasolinera. El archivo debe estar dentro de la carpeta 'datos'" );
+        if( !nombreArchivo.trim( ).equals( "" ) )
+        {
+            File archivo = new File( "./datos/" + nombreArchivo );
+
+            if( !archivo.exists( ) )
+            {
+                System.out.println( "El archivo indicado no existe" );
+            }
+            else
+            {
+                try
+                {
+                    laGaleria = Galeria.cargarEstado( archivo );
+                    System.out.println( "Se cargó la gasolinera a partir del archivo " + archivo.getAbsolutePath( ) );
+                }
+                catch( NumberFormatException e )
+                {
+                    System.out.println( "Hubo un error leyendo el archivo: hay números con un formato incorrecto" );
+                    System.out.println( e.getMessage( ) );
+                    e.printStackTrace( );
+                }
+                catch( FileNotFoundException e )
+                {
+                    System.out.println( "No se encontró el archivo indicado" );
+                    System.out.println( e.getMessage( ) );
+                    e.printStackTrace( );
+                }
+                catch( IOException e )
+                {
+                    System.out.println( "No se pudo leer el archivo indicado" );
+                    System.out.println( e.getMessage( ) );
+                    e.printStackTrace( );
+                }
+            }
+        }
+
+    }
+	
 	private void guardarGaleria( )
     {
         if( laGaleria == null )
         {
-            System.out.println( "No hay ninguna gasolinera para guardar" );
+            System.out.println( "No hay ninguna galeria para guardar" );
         }
         else
         {
@@ -94,7 +145,7 @@ public class ConsolaPrincipal extends ConsolaBasica{
                     try
                     {
                         laGaleria.guardarEstado( archivo );
-                        System.out.println( "El estado actual de la gasolinera fue salvado en el archivo " + archivo.getAbsolutePath( ) );
+                        System.out.println( "El estado actual de la galeria fue salvado en el archivo " + archivo.getAbsolutePath( ) );
                     }
                     catch( IOException e )
                     {

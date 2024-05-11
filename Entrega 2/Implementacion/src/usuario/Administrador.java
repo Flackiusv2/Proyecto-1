@@ -23,19 +23,19 @@ public class Administrador extends Empleado {
         }
     }
     public String confirmarVenta(Compra compra, Pieza pieza, String idComprador){
-        // Confirma una venta
+        
         String nombre = pieza.getTitulo();
         bloquearPieza(nombre);
         if (compra.verificarVentaValorFijo(pieza , compra.getValorPagado()) && verificarComprador(idComprador) && this.galeria.getControladorUsuarios().obtenerComprador(idComprador).getLimiteCompras() >= compra.getValorPagado()){
             this.galeria.getInventario().getPiezasDisponibleVenta().remove(pieza);
             this.galeria.getInventario().getPiezasPasadas().add(pieza);
-            //agregar la pieza a misCompras del comprador 
+             
             this.galeria.getControladorUsuarios().obtenerComprador(idComprador).agregarCompra(compra);
-            //remover de piezasDisponiblesVenta
+            
             this.galeria.getInventario().getPiezasDisponibleVenta().remove(pieza);
-            //agregar a piezasPasadas
+       
             this.galeria.getInventario().getPiezasPasadas().add(pieza);
-            //agregar a misPiezasActuales de priopetario
+            
             if (this.galeria.getControladorUsuarios().obtenerPropietario(idComprador) != null){
                 this.galeria.getControladorUsuarios().obtenerPropietario(idComprador).getMisPiezasActuales().add(pieza);
             }
@@ -73,7 +73,9 @@ public class Administrador extends Empleado {
     public boolean verificarComprador(String id){
         if ( this.galeria.getControladorUsuarios().obtenerComprador(id) == null ) 
             return false;
+        else {
         return true;
+        }
     }
     public String verificarSeriedadOferta(String id, int valorApagar){
         // Verifica la seriedad de una oferta

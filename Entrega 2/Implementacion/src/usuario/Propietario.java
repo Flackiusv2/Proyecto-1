@@ -1,4 +1,5 @@
 package usuario;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,8 +12,8 @@ public class Propietario extends Cliente{
 
     public Propietario(String usuario, String contraseña, String nombre, String telefono, String id){
         super(usuario, contraseña, nombre, telefono,id);
-        misPiezasActuales = new LinkedList<Pieza>( );
-        misPiezasPasadas = new LinkedList<Pieza>( );
+        misPiezasActuales = new ArrayList<Pieza>( );
+        misPiezasPasadas = new ArrayList<Pieza>( );
 
     }
 
